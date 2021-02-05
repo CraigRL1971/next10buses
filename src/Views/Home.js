@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { Link, withRouter } from 'react-router-dom'
+import HTTPRequest from './../Components/HTTPRequest'
 
 class Home extends React.Component {
 
@@ -15,24 +15,6 @@ class Home extends React.Component {
         this.getLocation = this.getLocation.bind(this);
     }
 
-    HTTPRequest(url) {
-
-        const sendGetRequest = async (url) => {
-            try {
-                const resp = await axios.get(url);
-                console.log(`response`);
-                console.log(resp.data);
-                let location = resp.data.plus_code.compound_code.replace(/[^\s]*\s/, "");
-                this.setState({currentLocation: location});
-            } catch (err) {
-                // Handle Error Here
-                console.error(err);
-            }
-        };
-        sendGetRequest(url);
-
-    }
-
     returnURL() {
         //  Build URL string for Google geocode API by adding the lat and long.
         return 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.state.lat + ',' + this.state.long + '&key=AIzaSyAmZAyvgmpT9BYeXfugc85_IPwO8oxllto';
@@ -42,7 +24,7 @@ class Home extends React.Component {
         // Get current location (neighbourhood)
         if (this.state.lat !== 0.0 && this.state.long !== 0.0) {  
             const url = this.returnURL();
-            this.HTTPRequest(url);
+            HTTPRequest(url).then((data) => { this.setState({currentLocation: data.plus_code.compound_code.replace(/[^\s]*\s/, "")}) });
         }
     }
 
@@ -55,7 +37,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        // Get current position 
+        // Get current position (Lat/Long)
         navigator.geolocation.getCurrentPosition(this.success, this.error);
     }
 
@@ -68,12 +50,12 @@ class Home extends React.Component {
                 <p>Current position is {this.state.lat} {this.state.long}</p>
                 <p>Current location is {this.state.currentLocation}</p>
                 <ul>
-                    <li><Link to="/mapview">Map View</Link></li>
-                    <li><Link to="/journeyview">Journey View</Link></li>
+                    <li><Link to={{pathname: "/mapview", state: {lat: this.state.lat, long: this.state.long}}}>Map View</Link></li>
+                    <li><Link to={{pathname: "/journeyview", state: {lat: this.state.lat, long: this.state.long}}}>Journey View</Link></li>
                 </ul>
             </div>
         );
     }
 }
 
-export default Home
+export default withRouter(Home)

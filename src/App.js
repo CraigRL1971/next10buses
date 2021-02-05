@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Home from './Views/Home'
 import MapView from './Views/MapView'
 import JourneyView from './Views/JourneyView'
@@ -21,4 +21,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

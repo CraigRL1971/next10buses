@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 function MapView() {
     return (
@@ -13,4 +13,4 @@ function MapView() {
     );
 }
 
-export default MapView
+export default withRouter(MapView)

@@ -2,9 +2,9 @@
 
 Will be a repository for my 'Next 10 Buses' project.
 
-The objective of this project is to create a web app in React.js that will show you the next ten buses that are due to arrive at any bus stops near your current location (UK only).  The app will use as defaults your current location and any bus stop within 1km of your current location.  
+The objective of this project is to create a web app in React.js that will show you the next ten buses that are due to arrive at the five bus stops near your current location (UK only).  The app will use as defaults your current location and any bus stop within 1km of your current location.  
 
-It will be possible to update the location, distance and select how the results are presented (list view or map view) before performing a search.
+It will be possible to update your location, and select how the results are presented (list view or map view) before performing a search.
 
 Search results will be available in list view and map view.
 
