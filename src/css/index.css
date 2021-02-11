@@ -1,0 +1,28 @@
+html {
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: #ed2521;
+  background-repeat:no-repeat;
+  background: -webkit-linear-gradient(to top right, #ed2521, #000099);
+  background: -moz-linear-gradient(to top right, #ed2521, #000099);
+  background: -ms-linear-gradient(to top right, #ed2521, #000099);
+  background: -o-linear-gradient(to top right, #ed2521, #000099);
+  background: linear-gradient(to top right, #ed2521, #000099);
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

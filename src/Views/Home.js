@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import HTTPRequest from './../Components/HTTPRequest'
+import '../css/App.css'
 
 class Home extends React.Component {
 
@@ -38,21 +39,23 @@ class Home extends React.Component {
 
     componentDidMount() {
         // Get current position (Lat/Long)
-        navigator.geolocation.getCurrentPosition(this.success, this.error);
+        navigator.geolocation.getCurrentPosition(this.success, this.error, { enableHighAccuracy: true, maximumAge: 0, timeout : 10000 });
     }
 
     render() {
  
+        let displayLat = parseFloat(this.state.lat).toFixed( 2 );
+        let displayLong = parseFloat(this.state.long).toFixed( 2 );
+
         return (
-            <div>
-                <h1>Home Page</h1>
-                <p>This is the home page</p>
-                <p>Current position is {this.state.lat} {this.state.long}</p>
+            <div id="home--page">
+                <h1 className="home--title">Next 10 Buses</h1>
+                <p>See the next ten bus services leaving from the nearest four bus stops to your current location</p>
+                <p>Click on List View to see a list of services.  Click on Map View to see the services overlayed on a map.</p>
+                <p>Current position is {displayLat}, {displayLong}</p>
                 <p>Current location is {this.state.currentLocation}</p>
-                <ul>
-                    <li><Link to={{pathname: "/mapview", state: {lat: this.state.lat, long: this.state.long}}}>Map View</Link></li>
-                    <li><Link to={{pathname: "/journeyview", state: {lat: this.state.lat, long: this.state.long}}}>Journey View</Link></li>
-                </ul>
+                <Link className="option--button" role="button" to={{pathname: "/mapview", state: {lat: this.state.lat, long: this.state.long}}}>Map View</Link>
+                <Link className="option--button" role="button" to={{pathname: "/journeyview", state: {lat: this.state.lat, long: this.state.long}}}>Journey View</Link>
             </div>
         );
     }
