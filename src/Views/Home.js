@@ -47,6 +47,13 @@ class Home extends React.Component {
         let displayLat = parseFloat(this.state.lat).toFixed( 2 );
         let displayLong = parseFloat(this.state.long).toFixed( 2 );
 
+/*         var userAgent = navigator.userAgent.toLowerCase(); 
+        var Android = userAgent.indexOf("android") > -1; 
+          
+        if(Android) { 
+            this.platform = "Device is Android Phone";
+        } 
+ */
         return (
             <div id="home--page">
                 <h1 className="home--title">Next 10 Buses</h1>

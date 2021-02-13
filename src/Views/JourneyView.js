@@ -49,12 +49,12 @@ class JourneyView extends React.Component {
         let allLiveData = [];  // We will use this array to aggregate the departures for each stop.
         //  Get next three buses for each stop, consider first four stops only.
         let index = 0;
-        while (index < 4) {
+        while (index < 5) {
             const atcocode = this.state.stops.member[index].atcocode;  // Get the bus stop code.
             const liveDataUrl = 'https://transportapi.com/v3/uk/bus/stop/' + atcocode + '/live.json?app_id=57b508b1&app_key=e0f14057cb2bdd76f9889e64eb968936&group=route&limit=3&nextbuses=no';
             HTTPRequest(liveDataUrl).then((liveData) => {
                 allLiveData.push(liveData);
-                if (allLiveData.length === 4) { this.setState({journeys: allLiveData}) }
+                if (allLiveData.length === 5) { this.setState({journeys: allLiveData}) }
             })
             .catch((error) => console.error(error));
             index++;
@@ -72,7 +72,7 @@ class JourneyView extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.state.stopDataPopulated) {
+        if (!this.state.stopDataPopulated && this.state.lat !== 0.0 && this.state.long !== 0.0) {
             this.getBusStops();
             this.setState({stopDataPopulated: true});
         }
@@ -81,22 +81,36 @@ class JourneyView extends React.Component {
     render() {
 
         let listItems = [];
+        let tableHeader = [];
         if (Object.keys(this.state.stops).length > 0 && Object.keys(this.state.journeys).length > 0) {
             const sortedJourneys = this.returnSortedJourneys();
             listItems = sortedJourneys.map((entry, index) =>
-                <li key={index}>{entry.stop_name} {entry.indicator} {entry.operator} {entry.line} {entry.est_time} {entry.direction}</li>
+                <tr key={index}>
+                    <td>{entry.stop_name}</td>
+                    <td>{entry.indicator}</td>
+                    <td>{entry.operator}</td>
+                    <td>{entry.line}</td>
+                    <td>{entry.est_time}</td>
+                    <td>{entry.direction}</td>
+                </tr>
             )
+            let headerTitles = ['Stop Name', 'Indicator', 'Operator', 'Line', 'Estimated Time', 'Direction'];
+            for (let i = 0; i < headerTitles.length; i++) {
+                tableHeader.push(<th>{headerTitles[i]}</th>);
+            }
         }
 
         return (
-            <div>
-                <h1>Journey View Page</h1>
-                <p>This is the journey view page</p>
-                <p>stops</p>
-                <ul>{listItems}</ul>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                </ul>
+            <div id="home--page">
+                <h1 className="home--title ">Journey View Page</h1>
+                <p>Here are the next ten bus journeys from stops near you</p>
+                <table id="bus-journeys">
+                    <tbody>
+                        {tableHeader}
+                        {listItems}
+                    </tbody>
+                </table>
+                <Link className="option--button" role="button" to="/">Home</Link>
             </div>
         );
     }
