@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import HTTPRequest from './../Components/HTTPRequest'
+import '../css/App.css'
 
 
 class JourneyView extends React.Component {
@@ -45,9 +46,9 @@ class JourneyView extends React.Component {
 
     getBusJourneys() {
 
-        //  Get the next three journeys for the closest four bus stops and store the data in this.state.
+        //  Get the next three journeys for the closest five bus stops and store the data in this.state.
         let allLiveData = [];  // We will use this array to aggregate the departures for each stop.
-        //  Get next three buses for each stop, consider first four stops only.
+        //  Get next three buses for each stop, consider first five stops only.
         let index = 0;
         while (index < 5) {
             const atcocode = this.state.stops.member[index].atcocode;  // Get the bus stop code.
@@ -86,17 +87,17 @@ class JourneyView extends React.Component {
             const sortedJourneys = this.returnSortedJourneys();
             listItems = sortedJourneys.map((entry, index) =>
                 <tr key={index}>
-                    <td>{entry.stop_name}</td>
-                    <td>{entry.indicator}</td>
-                    <td>{entry.operator}</td>
-                    <td>{entry.line}</td>
-                    <td>{entry.est_time}</td>
-                    <td>{entry.direction}</td>
+                    <td className="table--border">{entry.stop_name}</td>
+                    <td className="table--border">{entry.indicator}</td>
+                    <td className="table--border">{entry.operator}</td>
+                    <td className="table--border">{entry.line}</td>
+                    <td className="table--border">{entry.est_time}</td>
+                    <td className="table--border">{entry.direction}</td>
                 </tr>
             )
             let headerTitles = ['Stop Name', 'Indicator', 'Operator', 'Line', 'Estimated Time', 'Direction'];
             for (let i = 0; i < headerTitles.length; i++) {
-                tableHeader.push(<th>{headerTitles[i]}</th>);
+                tableHeader.push(<th className="table--border table--header">{headerTitles[i]}</th>);
             }
         }
 
@@ -104,7 +105,7 @@ class JourneyView extends React.Component {
             <div id="home--page">
                 <h1 className="home--title ">Journey View Page</h1>
                 <p>Here are the next ten bus journeys from stops near you</p>
-                <table id="bus-journeys">
+                <table id="bus-journeys" className="table--border">
                     <tbody>
                         {tableHeader}
                         {listItems}
