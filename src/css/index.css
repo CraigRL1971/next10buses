@@ -4,13 +4,14 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background: #ed2521;
-  background-repeat:no-repeat;
-  background: -webkit-linear-gradient(to top right, #ed2521, #000099);
-  background: -moz-linear-gradient(to top right, #ed2521, #000099);
-  background: -ms-linear-gradient(to top right, #ed2521, #000099);
-  background: -o-linear-gradient(to top right, #ed2521, #000099);
-  background: linear-gradient(to top right, #ed2521, #000099);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: -webkit-linear-gradient(to top right, #ed2521, #000099);
+  background-image: -moz-linear-gradient(to top right, #ed2521, #000099);
+  background-image: -ms-linear-gradient(to top right, #ed2521, #000099);
+  background-image: -o-linear-gradient(to top right, #ed2521, #000099);
+  background-image: linear-gradient(to top right, #ed2521, #000099);
 }
 
 body {

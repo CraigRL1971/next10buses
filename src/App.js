@@ -7,13 +7,13 @@ function App() {
   return (
     <div>
         <Switch>
-          <Route exact path="/mapview">
+          <Route path="/mapview">
             <MapView />
           </Route>
-          <Route exact path="/journeyview">
+          <Route path="/journeyview">
             <JourneyView />  
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
         </Switch>
