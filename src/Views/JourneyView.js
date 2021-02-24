@@ -54,6 +54,8 @@ class JourneyView extends React.Component {
             const atcocode = this.state.stops.member[index].atcocode;  // Get the bus stop code.
             const liveDataUrl = 'https://transportapi.com/v3/uk/bus/stop/' + atcocode + '/live.json?app_id=57b508b1&app_key=e0f14057cb2bdd76f9889e64eb968936&group=route&limit=3&nextbuses=no';
             HTTPRequest(liveDataUrl).then((liveData) => {
+                console.log('Live data');
+                console.log(liveData);
                 allLiveData.push(liveData);
                 if (allLiveData.length === 5) { this.setState({journeys: allLiveData}) }
             })
@@ -103,7 +105,7 @@ class JourneyView extends React.Component {
 
         return (
             <div id="home--page">
-                <h1 className="home--title ">Journey View Page</h1>
+                <h1 className="home--title">Journey View Page</h1>
                 <p>Here are the next ten bus journeys from stops near you</p>
                 <table id="bus-journeys" className="table--border">
                     <tbody>

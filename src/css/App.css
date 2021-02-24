@@ -12,12 +12,34 @@
     text-align: center;
 }
 
+#map--page {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-self: center;
+    margin: 0;
+    height: 100%;
+    z-index: 1;
+    width: auto;
+    max-width: 1300px; 
+    text-align: center;
+}
+
 .home--title {
     border-style: solid;
     border-width: 2px;
     border-radius: 3px;
     background-color: crimson;
     margin: 0 20%;
+}
+
+.map--title {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3px;
+    background-color: crimson;
+    margin: 5px 20%;
+    height: 3rem;
 }
 
 .option--button {
@@ -35,6 +57,10 @@
     margin-bottom: 5px;
 }
  
+.map--option--button {
+    margin-top: 30rem;
+}
+
 .table--border {
     border-width: 1px;
     border-color: cornsilk;
@@ -44,6 +70,12 @@
 .table--header {
     background-color: darkblue;
 }
+
+.map--container {
+    height: 80%;
+    width: 80%;
+    margin: 0;
+  }
 
 /* 
 Media query for responsive HTML table lifted from https://css-tricks.com/responsive-data-tables/
